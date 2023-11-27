@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/Layout";
+
 import { Loader2 } from "lucide-react";
 
 const DetailPage = () => {

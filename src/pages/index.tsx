@@ -1,22 +1,22 @@
 import axios from "axios";
-
 import { useEffect, useState } from "react";
-import { ChevronLeftIcon, ChevronRightIcon, Loader2 } from "lucide-react";
 
 import { useToast } from "@/components/ui/use-toast";
 import PokemonCard from "@/components/PokemonCard";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 
-function App() {
-  const { toast } = useToast();
-  const [pokemons, setPokemon] = useState([]);
+import { ChevronLeftIcon, ChevronRightIcon, Loader2 } from "lucide-react";
 
+function App() {
   const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
   const [nextPage, setNextPage] = useState<string>();
   const [prevPage, setPrevPage] = useState<string>();
 
+  const [pokemons, setPokemon] = useState([]);
+
   const [isLoading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   const fetchDataPokemon = async () => {
     setLoading(true);

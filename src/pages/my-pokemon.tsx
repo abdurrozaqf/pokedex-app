@@ -18,7 +18,6 @@ const MyPokemon = () => {
   const [pokemons, setPokemons] = useState(getDatafromLS());
   const [isLoading, setLoading] = useState(false);
 
-  // delete book from LS
   const deletePokemon = (nickname: number) => {
     setLoading(true);
     const filteredBooks = pokemons.filter((element: any) => {
@@ -28,7 +27,6 @@ const MyPokemon = () => {
     setLoading(false);
   };
 
-  // saving data to local storage
   useEffect(() => {
     localStorage.setItem("myPokemon", JSON.stringify(pokemons));
   }, [pokemons]);
@@ -48,15 +46,15 @@ const MyPokemon = () => {
           ) : (
             <>
               <div className="grid grid-cols-2 gap-y-10 justify-items-center py-10 px-5">
-                {pokemons.map((item: any, index: any) => {
+                {pokemons.map((items: any, index: any) => {
                   return (
                     <div key={index} className="relative">
                       <div className="absolute right-0 p-2 hover:text-red-500 cursor-pointer border dark:border-white/20 rounded-tr-lg rounded-bl-lg">
-                        <Trash2 onClick={() => deletePokemon(item.nickname)} />
+                        <Trash2 onClick={() => deletePokemon(items.nickname)} />
                       </div>
                       <MyPokemonCard
-                        nickname={item.nickname}
-                        data={item.data_pokemon}
+                        nickname={items.nickname}
+                        data={items.data_pokemon}
                       />
                     </div>
                   );

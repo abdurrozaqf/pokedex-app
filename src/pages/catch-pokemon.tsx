@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { Pokemon, getDetailPokemon } from "@/utils/apis";
+
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
@@ -51,17 +52,6 @@ const CatchPokemon = () => {
       variant: "default",
     });
   };
-  // const handleAddPokemon = (e: any) => {
-  //   e.preventDefault();
-
-  //   let myPokemons = {
-  //     nickname,
-  //     data_pokemon: dataPokemon,
-  //   };
-  //   setPokemons([...pokemons, myPokemons]);
-  //   setNickname("");
-  //   setCatchPokemon(false);
-  // };
 
   const handleNickname = (e: any) => {
     const newNickname = e.target.value;
@@ -162,7 +152,6 @@ const CatchPokemon = () => {
             />
             <div className="w-full h-full flex flex-col items-center justify-end bottom-10 absolute z-[2]">
               <Button
-                // disabled={btnSave === true}
                 onClick={() => rateCatch()}
                 className="w-fit bg-white hover:bg-neutral-200 text-black h-auto px-5 font-extrabold"
               >
@@ -172,7 +161,6 @@ const CatchPokemon = () => {
           </>
         )}
         {catchPokemon && (
-          // <div className="flex justify-center">
           <div className="w-full h-full bg-black/60 absolute  z-[4] flex justify-center items-center">
             <div className="w-fit h-fit px-10 py-5 bg-neutral-900 dark:bg-indigo-950 border-8 dark:border-white dark:border-4 rounded-3xl absolute z-[5] text-white">
               <p className="text-center mb-5 text-3xl font-extrabold">
@@ -196,21 +184,6 @@ const CatchPokemon = () => {
                   type="text"
                   required
                   className="text-black rounded-full px-2 text-center"
-                  // onChange={(e) => {
-                  //   pokemons.map((items: any) => {
-                  //     if (e.target.value !== items.nickname) {
-                  //       setNickname(e.target.value);
-                  //       // setBtnSave(true);
-                  //     } else {
-                  //       toast({
-                  //         title: "Opss!",
-                  //         description: "Nickname already used.",
-                  //         variant: "destructive",
-                  //       });
-                  //     }
-                  //   });
-                  // }}
-                  // onChange={handleNickname}
                   onChange={handleNickname}
                   value={nickname}
                 ></input>
