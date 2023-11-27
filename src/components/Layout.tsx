@@ -13,10 +13,10 @@ const Layout = (props: Readonly<Props>) => {
   const { children, title } = props;
 
   return (
-    <div className="w-full h-screen bg-gradient-to-br from-indigo-300 to-indigo-100 dark:from-indigo-950 dark:to-indigo-900/20 transition-all duration-200 flex justify-center overflow-auto p-0 md:p-2">
+    <div className="w-full h-screen bg-gradient-to-br from-indigo-300 to-indigo-100 dark:from-indigo-950 dark:to-indigo-900/20 transition-all duration-200 flex justify-center overflow-auto p-0 md:p-2 font-josefin">
       <div className="w-auto md:w-[640px] flex flex-col border dark:border-white/20 rounded-lg overflow-auto shadow ">
         <Navbar title={title} />
-        <div className="grow overflow-auto bg-[#F3F3F7]/50 dark:bg-black/10 py-4">
+        <div className="grow overflow-auto bg-gradient-to-br from-indigo-200 to-indigo-50 dark:from-indigo-400/10 dark:to-indigo-950/5">
           {children}
         </div>
         <BottomBar />
