@@ -173,22 +173,6 @@ const CatchPokemon = () => {
                   Runn !
                 </Button>
               </div>
-              {/* <div className="flex items-center gap-10 bg-white/50 dark:bg-black/50 px-10 py-5 border-8 rounded dark:border-white">
-                <Button
-                  onClick={() => rateCatch()}
-                  className="w-fit bg-white hover:bg-neutral-200 text-black h-auto px-5 font-extrabold"
-                >
-                  Catch !
-                </Button>
-
-                <p>or</p>
-                <Button
-                  onClick={() => navigate(-1)}
-                  className="w-fit bg-white hover:bg-neutral-200 text-black h-auto px-5 font-extrabold"
-                >
-                  Runn !
-                </Button>
-              </div> */}
             </div>
           </>
         )}
