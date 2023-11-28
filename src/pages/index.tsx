@@ -21,24 +21,22 @@ function App() {
   const fetchDataPokemon = async () => {
     setLoading(true);
     try {
-      setTimeout(async () => {
-        const Response = await axios.get(url);
-        const dataResponse = Response.data;
+      const Response = await axios.get(url);
+      const dataResponse = Response.data;
 
-        setPrevPage(Response.data.previous);
-        setNextPage(Response.data.next);
+      setPrevPage(Response.data.previous);
+      setNextPage(Response.data.next);
 
-        const promises = dataResponse.results.map(async (data: any) => {
-          const res = await axios.get(data.url);
-          const dataPokemon = res.data;
+      const promises = dataResponse.results.map(async (data: any) => {
+        const res = await axios.get(data.url);
+        const dataPokemon = res.data;
 
-          return dataPokemon;
-        });
-        const results: any = await Promise.all(promises);
-        setPokemon(results);
+        return dataPokemon;
+      });
+      const results: any = await Promise.all(promises);
+      setPokemon(results);
 
-        setLoading(false);
-      }, 300);
+      setLoading(false);
     } catch (error: any) {
       toast({
         title: "Oops! Something went wrong.",
@@ -61,11 +59,11 @@ function App() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-2 gap-y-6 justify-items-center overflow-auto p-4">
-              {pokemons?.map((item, index) => (
-                <>
-                  <PokemonCard key={index} data={item} />
-                </>
+            <div className="grid grid-cols-2 gap-y-6 justify-items-center overflow-auto px-0 py-6 md:px-6">
+              {pokemons?.map((item: any, index) => (
+                <div key={index}>
+                  <PokemonCard key={item.id} data={item} />
+                </div>
               ))}
             </div>
             <div className="flex items-center justify-around p-6">

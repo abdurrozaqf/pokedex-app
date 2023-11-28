@@ -32,7 +32,7 @@ const MyPokemon = () => {
   }, [pokemons]);
 
   return (
-    <Layout title="Pokemon Collection">
+    <Layout title="Collections">
       {isLoading ? (
         <div className="h-full flex grow items-center justify-center">
           <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait

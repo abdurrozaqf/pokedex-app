@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { Pokemon, getDetailPokemon } from "@/utils/apis";
@@ -9,6 +9,7 @@ import Layout from "@/components/Layout";
 
 import BackgroundCatch2 from "../assets/bg-catch-2.png";
 import BackgroundCatch from "../assets/bg-catch.jpg";
+import PokeBall from "../assets/pokeball-logo-2.png";
 
 import { Loader2 } from "lucide-react";
 
@@ -24,7 +25,6 @@ const getDatafromLS = () => {
 const CatchPokemon = () => {
   const [dataPokemon, setDataPokemon] = useState<Pokemon>();
   const [pokemons, setPokemons] = useState(getDatafromLS());
-  console.log(pokemons);
 
   const [catchPokemon, setCatchPokemon] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +32,7 @@ const CatchPokemon = () => {
 
   const [nickname, setNickname] = useState("");
 
+  const navigate = useNavigate();
   const { toast } = useToast();
   const params = useParams();
 
@@ -94,12 +95,10 @@ const CatchPokemon = () => {
   async function fetchDetail() {
     setIsLoading(true);
     try {
-      setTimeout(async () => {
-        const detailResponse = await getDetailPokemon(params.name!);
+      const detailResponse = await getDetailPokemon(params.id_pokemon!);
+      setDataPokemon(detailResponse);
 
-        setDataPokemon(detailResponse);
-        setIsLoading(false);
-      }, 500);
+      setIsLoading(false);
     } catch (error: any) {
       toast({
         title: "Opss!",
@@ -111,6 +110,7 @@ const CatchPokemon = () => {
 
   useEffect(() => {
     fetchDetail();
+
     localStorage.setItem("myPokemon", JSON.stringify(pokemons));
   }, [pokemons]);
 
@@ -146,17 +146,45 @@ const CatchPokemon = () => {
                   dataPokemon?.name.slice(1)!}
               </p>
             </div>
-            <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${dataPokemon?.id}.svg`}
-              className="w-auto h-[8rem] mt-[15rem] absolute z-[2] left-[40%] grayscale-0 dark:grayscale-[50%]"
-            />
-            <div className="w-full h-full flex flex-col items-center justify-end bottom-10 absolute z-[2]">
-              <Button
-                onClick={() => rateCatch()}
-                className="w-fit bg-white hover:bg-neutral-200 text-black h-auto px-5 font-extrabold"
-              >
-                CATCH
-              </Button>
+            <figure>
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${dataPokemon?.id}.svg`}
+                className="w-auto h-[12rem] absolute z-[2] left-[30%] md:left-[35%] grayscale-0 dark:grayscale-[50%]"
+              />
+            </figure>
+            <div className="w-full h-full flex flex-col items-center justify-end bottom-4 absolute z-[2]">
+              <figure onClick={() => rateCatch()}>
+                <img
+                  src={PokeBall}
+                  className={`h-[5rem] ${
+                    !catchPokemon && "animate-bounce"
+                  } cursor-pointer`}
+                />
+              </figure>
+              <div className="w-full flex justify-end mr-16">
+                <Button
+                  onClick={() => navigate(-1)}
+                  className="w-fit bg-white hover:bg-neutral-200 text-black h-0 px-5 py-4 font-extrabold"
+                >
+                  Runn !
+                </Button>
+              </div>
+              {/* <div className="flex items-center gap-10 bg-white/50 dark:bg-black/50 px-10 py-5 border-8 rounded dark:border-white">
+                <Button
+                  onClick={() => rateCatch()}
+                  className="w-fit bg-white hover:bg-neutral-200 text-black h-auto px-5 font-extrabold"
+                >
+                  Catch !
+                </Button>
+
+                <p>or</p>
+                <Button
+                  onClick={() => navigate(-1)}
+                  className="w-fit bg-white hover:bg-neutral-200 text-black h-auto px-5 font-extrabold"
+                >
+                  Runn !
+                </Button>
+              </div> */}
             </div>
           </>
         )}

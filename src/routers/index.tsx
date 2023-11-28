@@ -12,11 +12,11 @@ export default function Router() {
       element: <Home />,
     },
     {
-      path: "/detail-pokemon/:name",
+      path: "/detail-pokemon/:id_pokemon",
       element: <DetailPage />,
     },
     {
-      path: "/catch-pokemon/:name",
+      path: "/catch-pokemon/:id_pokemon",
       element: <CatchPokemon />,
     },
     {
