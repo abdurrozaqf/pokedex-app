@@ -56,7 +56,7 @@ const DetailPage = () => {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-5 px-6 py-6">
+          <div className="grid grid-cols-2 gap-5 px-6 py-6 transition-all">
             <div className="h-fit flex flex-col items-center justify-center relative">
               <p className="font-extrabold text-2xl absolute z-[1] top-1 italic">
                 ({species?.names[0].name})
@@ -65,6 +65,7 @@ const DetailPage = () => {
                 <figure>
                   <img
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemons?.id!}.png`}
+                    alt={pokemons?.name}
                     className="w-full h-auto"
                   />
                 </figure>
@@ -90,12 +91,12 @@ const DetailPage = () => {
               <div className="mt-1">
                 {pokemons?.stats.map((datas, index) => (
                   <div key={index}>
-                    <div className="w-full flex items-end justify-between">
+                    <div className="w-full flex items-end justify-between mb-0 md:mb-1">
                       <p className="mt-2 text-base italic">
                         {datas.stat.name.charAt(0).toUpperCase() +
                           datas.stat.name.slice(1)}
                       </p>
-                      <p className="mt-2 text-2xl font-bold">
+                      <p className="mt-2 text-lg md:text-xl font-bold">
                         {datas.base_stat}
                       </p>
                     </div>
@@ -110,20 +111,20 @@ const DetailPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 md:gap-y-4">
                 <p className="font-medium text-xl leading-5">
                   Height <br />{" "}
-                  <span className="font-normal text-lg dark:text-neutral-300">
+                  <span className="font-normal text-base md:text-lg dark:text-neutral-300">
                     {pokemons?.height! / 10} m{" "}
                   </span>
                 </p>
                 <p className="font-medium text-xl leading-5">
                   Weight
                   <br />
-                  <span className="font-normal text-lg dark:text-neutral-300">
+                  <span className="font-normal text-base md:text-lg dark:text-neutral-300">
                     {pokemons?.weight! / 10} kg
                   </span>
                 </p>
                 <p className="font-medium text-xl leading-5">
                   Habitat <br />
-                  <span className="font-normal text-lg dark:text-neutral-300">
+                  <span className="font-normal text-base md:text-lg dark:text-neutral-300">
                     {species?.habitat.name || "—"}
                   </span>
                 </p>
@@ -135,7 +136,7 @@ const DetailPage = () => {
               {pokemons?.abilities.map((datas, index) => (
                 <p
                   key={index}
-                  className="font-medium text-xl dark:text-neutral-300"
+                  className="font-medium text-base md:text-xl dark:text-neutral-300"
                 >
                   ›{" "}
                   {datas.ability.name.charAt(0).toUpperCase() +
@@ -153,7 +154,7 @@ const DetailPage = () => {
                   index < 9 ? (
                     <p
                       key={index}
-                      className="font-medium text-xl dark:text-neutral-300"
+                      className="font-medium text-base md:text-xl dark:text-neutral-300"
                     >
                       ›{" "}
                       {datas.move.name.charAt(0).toUpperCase() +

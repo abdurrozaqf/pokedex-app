@@ -119,14 +119,16 @@ const CatchPokemon = () => {
       <div className="w-full h-full flex flex-col bg-catch-dark relative">
         <figure className="w-full h-full absolute z-[1]">
           <img
-            src={BackgroundCatch2}
-            className="h-full invisible dark:visible object-cover"
+            src={BackgroundCatch}
+            alt="Background Forest Day"
+            className="h-full visible dark:invisible object-cover"
           />
         </figure>
         <figure className="w-full h-full absolute z-[1]">
           <img
-            src={BackgroundCatch}
-            className="h-full visible dark:invisible object-cover"
+            src={BackgroundCatch2}
+            alt="Background Forest Night"
+            className="h-full invisible dark:visible object-cover"
           />
         </figure>
 
@@ -149,6 +151,7 @@ const CatchPokemon = () => {
             <figure>
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${dataPokemon?.id}.svg`}
+                alt={dataPokemon?.name}
                 className="w-auto h-[12rem] absolute z-[2] left-[30%] md:left-[35%] grayscale-0 dark:grayscale-[50%]"
               />
             </figure>
@@ -156,6 +159,7 @@ const CatchPokemon = () => {
               <figure onClick={() => rateCatch()}>
                 <img
                   src={PokeBall}
+                  alt="Logo Poke Ball"
                   className={`h-[5rem] ${
                     !catchPokemon && "animate-bounce"
                   } cursor-pointer`}
@@ -189,7 +193,7 @@ const CatchPokemon = () => {
           </>
         )}
         {catchPokemon && (
-          <div className="w-full h-full bg-black/60 absolute  z-[4] flex justify-center items-center">
+          <div className="w-full h-full bg-black/60 absolute z-[4] flex justify-center items-center transition-all">
             <div className="w-fit h-fit px-10 py-5 bg-neutral-900 dark:bg-indigo-950 border-8 dark:border-white dark:border-4 rounded-3xl absolute z-[5] text-white">
               <p className="text-center mb-5 text-3xl font-extrabold">
                 Congratulation!!!

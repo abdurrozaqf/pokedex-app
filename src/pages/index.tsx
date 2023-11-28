@@ -60,10 +60,8 @@ function App() {
         ) : (
           <>
             <div className="grid grid-cols-2 gap-y-6 justify-items-center overflow-auto px-0 py-6 md:px-6">
-              {pokemons?.map((item: any, index) => (
-                <div key={index}>
-                  <PokemonCard key={item.id} data={item} />
-                </div>
+              {pokemons?.map((pokemon: any, index) => (
+                <PokemonCard key={index} data={pokemon} />
               ))}
             </div>
             <div className="flex items-center justify-around p-6">

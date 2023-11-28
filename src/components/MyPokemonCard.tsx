@@ -16,6 +16,7 @@ const PokemonCard = (props: Props) => {
           <img
             // src={data.sprites.other.dream_world.front_default}
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
+            alt={data.name}
             className="w-auto h-[8rem]"
           />
         </figure>
