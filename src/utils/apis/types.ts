@@ -1,4 +1,5 @@
 export interface Pokemon {
+  id: number;
   abilities: [
     {
       ability: {
@@ -10,8 +11,13 @@ export interface Pokemon {
   form: [];
   game_indices: [];
   height: number;
-  id: number;
-  moves: [];
+  moves: [
+    {
+      move: {
+        name: string;
+      };
+    }
+  ];
   name: string;
   order: number;
   past_abilities: [];
@@ -44,4 +50,23 @@ export interface Pokemon {
     }
   ];
   weight: number;
+}
+
+export interface PokemonGender {
+  id: number;
+  name: string;
+}
+
+export interface PokemonSpecies {
+  base_happiness: number;
+  capture_rate: number;
+  habitat: {
+    name: string;
+  };
+  // spesies
+  names: [
+    {
+      name: string;
+    }
+  ];
 }

@@ -1,5 +1,5 @@
-import { getDetailPokemon } from "./api";
-export { getDetailPokemon };
+import { getDetailPokemon, getGenderPokemon, getSpeciesPokemon } from "./api";
+export { getDetailPokemon, getGenderPokemon, getSpeciesPokemon };
 
-import { Pokemon } from "./types";
-export type { Pokemon };
+import { Pokemon, PokemonGender, PokemonSpecies } from "./types";
+export type { Pokemon, PokemonGender, PokemonSpecies };
