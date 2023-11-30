@@ -17,8 +17,8 @@ const PokemonCard = (props: Props) => {
           className="w-full h-[10rem] md:w-full md:h-[12rem] mb-2"
         />
         <div className="w-full bg-black dark:bg-white  text-white dark:text-black py-2 transition-colors">
-          <p className="text-center text-lg md:text-3xl font-black tracking-wide">
-            {data.name.charAt(0).toUpperCase() + data.name.slice(1)}
+          <p className="text-center text-lg md:text-3xl font-black tracking-wide capitalize">
+            {data.name}
           </p>
         </div>
       </div>

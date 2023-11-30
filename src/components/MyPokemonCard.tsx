@@ -21,8 +21,8 @@ const PokemonCard = (props: Props) => {
           />
         </figure>
         <div className="">
-          <p className="text-center text-lg md:text-3xl font-black tracking-wide">
-            {data.name.charAt(0).toUpperCase() + data.name.slice(1)}
+          <p className="text-center text-lg md:text-3xl font-black tracking-wide capitalize">
+            {data.name}
           </p>
           <p className="text-center text-lg md:text-xl font-black tracking-wide">
             ({nickname})

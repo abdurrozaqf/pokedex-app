@@ -143,9 +143,7 @@ const CatchPokemon = () => {
                 className="p-4 rounded-lg text-white bg-green-700 dark:bg-green-700 border-4
                border-white"
               >
-                This is{" "}
-                {dataPokemon?.name.charAt(0).toUpperCase() +
-                  dataPokemon?.name.slice(1)!}
+                This is {dataPokemon?.name}
               </p>
             </div>
             <figure>
@@ -185,9 +183,8 @@ const CatchPokemon = () => {
               <p className="text-center mb-5 text-xl font-light">
                 You caught
                 <br />
-                <span className="text-2xl font-semibold">
-                  {dataPokemon?.name.charAt(0).toUpperCase() +
-                    dataPokemon?.name.slice(1)!}
+                <span className="text-2xl font-semibold capitalize">
+                  {dataPokemon?.name}
                 </span>
               </p>
               <form

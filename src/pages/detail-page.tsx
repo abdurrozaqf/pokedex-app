@@ -92,9 +92,8 @@ const DetailPage = () => {
                 {pokemons?.stats.map((datas, index) => (
                   <div key={index}>
                     <div className="w-full flex items-end justify-between mb-0 md:mb-1">
-                      <p className="mt-2 text-base italic">
-                        {datas.stat.name.charAt(0).toUpperCase() +
-                          datas.stat.name.slice(1)}
+                      <p className="mt-2 text-base italic capitalize">
+                        {datas.stat.name}
                       </p>
                       <p className="mt-2 text-lg md:text-xl font-bold">
                         {datas.base_stat}
@@ -136,11 +135,9 @@ const DetailPage = () => {
               {pokemons?.abilities.map((datas, index) => (
                 <p
                   key={index}
-                  className="font-medium text-base md:text-xl dark:text-neutral-300"
+                  className="font-medium text-base md:text-xl dark:text-neutral-300 capitalize"
                 >
-                  ›{" "}
-                  {datas.ability.name.charAt(0).toUpperCase() +
-                    datas.ability.name.slice(1)!}
+                  › {datas.ability.name}
                 </p>
               ))}
             </div>
@@ -154,11 +151,9 @@ const DetailPage = () => {
                   index < 9 ? (
                     <p
                       key={index}
-                      className="font-medium text-base md:text-xl dark:text-neutral-300"
+                      className="font-medium text-base md:text-xl dark:text-neutral-300 capitalize"
                     >
-                      ›{" "}
-                      {datas.move.name.charAt(0).toUpperCase() +
-                        datas.move.name.slice(1)!}
+                      › {datas.move.name}
                     </p>
                   ) : undefined
                 )
