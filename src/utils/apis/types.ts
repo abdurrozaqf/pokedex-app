@@ -1,23 +1,19 @@
 export interface Pokemon {
   id: number;
-  abilities: [
-    {
-      ability: {
-        name: string;
-      };
-    }
-  ];
+  abilities: {
+    ability: {
+      name: string;
+    };
+  }[];
   base_experience: number;
   form: [];
   game_indices: [];
   height: number;
-  moves: [
-    {
-      move: {
-        name: string;
-      };
-    }
-  ];
+  moves: {
+    move: {
+      name: string;
+    };
+  }[];
   name: string;
   order: number;
   past_abilities: [];
@@ -32,23 +28,19 @@ export interface Pokemon {
       };
     };
   };
-  stats: [
-    {
-      base_stat: number;
-      effort: number;
-      stat: {
-        name: string;
-      };
-    }
-  ];
-  types: [
-    {
-      slot: number;
-      type: {
-        name: string;
-      };
-    }
-  ];
+  stats: {
+    base_stat: number;
+    effort: number;
+    stat: {
+      name: string;
+    };
+  }[];
+  types: {
+    slot: number;
+    type: {
+      name: string;
+    };
+  }[];
   weight: number;
 }
 
@@ -63,10 +55,7 @@ export interface PokemonSpecies {
   habitat: {
     name: string;
   };
-  // spesies
-  names: [
-    {
-      name: string;
-    }
-  ];
+  names: {
+    name: string;
+  }[];
 }
