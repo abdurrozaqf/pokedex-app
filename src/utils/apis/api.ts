@@ -1,5 +1,18 @@
 import axiosWithConfig from "../axiosWithConfig";
 import { Pokemon, PokemonGender, PokemonSpecies } from "./types";
+// import { Request, Response } from "@/utils/types/api";
+
+export const searchPokemon = async (query: string) => {
+  try {
+    const url = query ? `/pokemon/${query}` : "/pokemon";
+
+    const response = await axiosWithConfig.get(url);
+
+    return response.data;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
 
 export const getDetailPokemon = async (id_pokemon: string) => {
   try {
