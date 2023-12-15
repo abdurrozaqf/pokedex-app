@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import debounce from "lodash.debounce";
 
 const SearchBox = () => {
-  const [seacrhParam, setSearchParam] = useSearchParams();
+  const [, setSearchParam] = useSearchParams();
   const navigate = useNavigate();
 
   const debounceRequest = debounce((search: string) => setSearch(search!), 500);
