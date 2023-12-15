@@ -1,6 +1,7 @@
 import { ModeToggle } from "@/components/ModeToggle";
 import Logo from "../assets/pokeball-logo.png";
 import { Link } from "react-router-dom";
+import SearchBox from "./SearchBox";
 
 type Props = {
   title?: string;
@@ -14,6 +15,7 @@ const Navbar = (props: Props) => {
       <Link to="/">
         <img src={Logo} alt="Logo Pokeball" className="w-8 h-8" />
       </Link>
+      <SearchBox />
       <p className="text-lg md:text-2xl mt-2 font-black text-white transition-colors">
         {title}
       </p>

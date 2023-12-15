@@ -4,12 +4,17 @@ import Home from "@/pages";
 import DetailPage from "@/pages/detail-page";
 import MyPokemon from "@/pages/my-pokemon";
 import CatchPokemon from "@/pages/catch-pokemon";
+import Search from "@/pages/search";
 
 export default function Router() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Home />,
+    },
+    {
+      path: "/search",
+      element: <Search />,
     },
     {
       path: "/detail-pokemon/:id_pokemon",
