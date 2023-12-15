@@ -7,8 +7,9 @@ import { Pokemon } from "@/utils/apis";
 import Layout from "@/components/Layout";
 
 const Search = () => {
-  const [seacrhParam] = useSearchParams();
+  const [seacrhParam, setSearchParam] = useSearchParams();
   const query = seacrhParam.get("q");
+  console.log(setSearchParam);
 
   const [datas, setDatas] = useState<Pokemon>();
 
