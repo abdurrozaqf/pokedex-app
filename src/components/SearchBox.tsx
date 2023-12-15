@@ -17,7 +17,7 @@ const SearchBox = () => {
       <input
         type="text"
         placeholder="Seacrh pokemon here"
-        className="dark:bg-transparent"
+        className="bg-transparent shadow px-4 py-2 outline-none rounded-md placeholder:italic placeholder:text-black placeholder:dark:text-white dark:shadow-white"
         onChange={(e) => debounceRequest(e.target.value)}
         onClick={() => navigate("/search")}
       />
