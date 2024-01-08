@@ -40,4 +40,4 @@ Let see the Pokemon App: [_here_](https://pokemon-app-ivory-omega.vercel.app/).
 
 ## Screenshots
 
-<img src="public/documentation-image-website.png"/>
+<img src="/public/images/documentation-image-website.png"/>
