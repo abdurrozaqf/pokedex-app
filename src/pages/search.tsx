@@ -1,10 +1,10 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import Layout from "@/components/Layout";
+
 import { searchPokemon } from "@/utils/apis/api";
 import { Pokemon } from "@/utils/apis";
-
-import Layout from "@/components/Layout";
 
 const Search = () => {
   const [seacrhParam, setSearchParam] = useSearchParams();

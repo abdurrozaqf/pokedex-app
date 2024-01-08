@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { Home } from "lucide-react";
 
-import Logo from "../assets/pokeball-logo.png";
+import Logo from "/images/pokeball-logo.png";
 
 const BottomBar = () => {
   return (

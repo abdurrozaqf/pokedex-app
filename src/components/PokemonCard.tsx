@@ -1,5 +1,6 @@
-import { Pokemon } from "@/utils/apis";
 import { Link } from "react-router-dom";
+
+import { Pokemon } from "@/utils/apis";
 
 type Props = {
   data: Pokemon;

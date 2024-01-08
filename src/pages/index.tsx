@@ -1,19 +1,22 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
+
+import { ChevronLeftIcon, ChevronRightIcon, Loader2 } from "lucide-react";
 
 import { useToast } from "@/components/ui/use-toast";
 import PokemonCard from "@/components/PokemonCard";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 
-import { ChevronLeftIcon, ChevronRightIcon, Loader2 } from "lucide-react";
+import { Response, ResponseResults } from "@/utils/types/api";
+import { Pokemon } from "@/utils/apis";
 
 function App() {
   const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
   const [nextPage, setNextPage] = useState<string>();
   const [prevPage, setPrevPage] = useState<string>();
 
-  const [pokemons, setPokemon] = useState([]);
+  const [pokemons, setPokemon] = useState<Pokemon[]>();
 
   const [isLoading, setLoading] = useState(false);
   const { toast } = useToast();
@@ -22,18 +25,18 @@ function App() {
     setLoading(true);
     try {
       const Response = await axios.get(url);
-      const dataResponse = Response.data;
+      const dataResponse = Response.data as Response<ResponseResults[]>;
 
       setPrevPage(Response.data.previous);
       setNextPage(Response.data.next);
 
-      const promises = dataResponse.results.map(async (data: any) => {
+      const promises = dataResponse.results.map(async (data) => {
         const res = await axios.get(data.url);
         const dataPokemon = res.data;
 
         return dataPokemon;
       });
-      const results: any = await Promise.all(promises);
+      const results: Pokemon[] = await Promise.all(promises);
       setPokemon(results);
 
       setLoading(false);

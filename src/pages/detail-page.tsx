@@ -1,17 +1,17 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Layout from "@/components/Layout";
+
 import {
   Pokemon,
   PokemonSpecies,
   getDetailPokemon,
   getSpeciesPokemon,
 } from "@/utils/apis";
-
-import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import Layout from "@/components/Layout";
 
 import { Loader2 } from "lucide-react";
 

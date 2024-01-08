@@ -1,7 +1,9 @@
-import { ModeToggle } from "@/components/ModeToggle";
-import Logo from "../assets/pokeball-logo.png";
 import { Link } from "react-router-dom";
-import SearchBox from "./SearchBox";
+
+import { ModeToggle } from "@/components/ModeToggle";
+import SearchBox from "@/components/SearchBox";
+
+import Logo from "/images/pokeball-logo.png";
 
 type Props = {
   title?: string;

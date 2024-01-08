@@ -1,5 +1,6 @@
-import { Pokemon } from "@/utils/apis";
 import { Link } from "react-router-dom";
+
+import { Pokemon } from "@/utils/apis";
 
 type Props = {
   data: Pokemon;
@@ -14,7 +15,6 @@ const PokemonCard = (props: Props) => {
       <div className="w-[10rem] h-[14rem] md:w-[16rem]  md:h-[16rem] bg-white dark:bg-slate-800/50 border dark:border-white/20 shadow-lg dark:shadow-neutral-300/20 rounded-lg flex flex-col items-center justify-between py-4">
         <figure>
           <img
-            // src={data.sprites.other.dream_world.front_default}
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${data.id}.svg`}
             alt={data.name}
             className="w-auto h-[8rem]"

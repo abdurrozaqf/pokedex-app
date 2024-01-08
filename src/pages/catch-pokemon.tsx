@@ -7,9 +7,9 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 
-import BackgroundCatch2 from "../assets/bg-catch-2.png";
-import BackgroundCatch from "../assets/bg-catch.jpg";
-import PokeBall from "../assets/pokeball-logo-2.png";
+import BackgroundCatch2 from "/images/bg-catch-2.png";
+import BackgroundCatch from "/images/bg-catch.jpg";
+import PokeBall from "/images/pokeball-logo-2.png";
 
 import { Loader2 } from "lucide-react";
 
