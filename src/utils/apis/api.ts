@@ -4,7 +4,7 @@ import { Pokemon, PokemonGender, PokemonSpecies } from "./types";
 
 export const getAllPokemons = async (query?: string) => {
   try {
-    const url = query !== undefined ? `${query}` : "/pokemon";
+    const url = query === undefined ? "/pokemon" : `${query}`;
 
     const response = await axiosWithConfig.get(url);
 
