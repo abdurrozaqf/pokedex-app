@@ -29,7 +29,6 @@ function App() {
     setLoading(true);
     try {
       const query = Object.fromEntries([...searchParams]);
-
       const Response = await getAllPokemons(query.url);
       const dataResponse = Response as Response<ResponseResults[]>;
 
