@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 
+import { useToast } from "@/components/ui/use-toast";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -13,13 +15,12 @@ import {
   getSpeciesPokemon,
 } from "@/utils/apis";
 
-import { Loader2 } from "lucide-react";
-
 const DetailPage = () => {
-  const [pokemons, setPokemons] = useState<Pokemon>();
   const [species, setSpecies] = useState<PokemonSpecies>();
+  const [pokemons, setPokemons] = useState<Pokemon>();
 
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
   const params = useParams();
 
   async function fetchDetailPokemon() {
@@ -27,7 +28,11 @@ const DetailPage = () => {
       const Response = await getDetailPokemon(params.id_pokemon!);
       setPokemons(Response);
     } catch (error: any) {
-      console.log(error.toString());
+      toast({
+        title: "Oops! Something went wrong.",
+        description: error.toString(),
+        variant: "destructive",
+      });
     }
   }
 
@@ -39,7 +44,11 @@ const DetailPage = () => {
 
       setIsLoading(false);
     } catch (error: any) {
-      console.log(error.toString());
+      toast({
+        title: "Oops! Something went wrong.",
+        description: error.toString(),
+        variant: "destructive",
+      });
     }
   }
 
@@ -49,7 +58,7 @@ const DetailPage = () => {
   }, []);
 
   return (
-    <Layout title={pokemons?.name.toUpperCase()}>
+    <Layout title={pokemons?.name.toUpperCase()!}>
       {isLoading ? (
         <div className="h-full flex grow items-center justify-center">
           <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait

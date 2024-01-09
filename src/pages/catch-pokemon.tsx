@@ -1,17 +1,16 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
-import { Pokemon, getDetailPokemon } from "@/utils/apis";
+import { Loader2 } from "lucide-react";
 
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 
+import { Pokemon, getDetailPokemon } from "@/utils/apis";
+
 import BackgroundCatch2 from "/images/bg-catch-2.png";
 import BackgroundCatch from "/images/bg-catch.jpg";
 import PokeBall from "/images/pokeball-logo-2.png";
-
-import { Loader2 } from "lucide-react";
 
 const getDatafromLS = () => {
   const data = localStorage.getItem("myPokemon");
@@ -110,7 +109,6 @@ const CatchPokemon = () => {
 
   useEffect(() => {
     fetchDetail();
-
     localStorage.setItem("myPokemon", JSON.stringify(pokemons));
   }, [pokemons]);
 

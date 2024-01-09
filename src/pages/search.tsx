@@ -1,35 +1,38 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { useToast } from "@/components/ui/use-toast";
 import Layout from "@/components/Layout";
 
 import { searchPokemon } from "@/utils/apis/api";
 import { Pokemon } from "@/utils/apis";
 
 const Search = () => {
-  const [seacrhParam, setSearchParam] = useSearchParams();
-  const query = seacrhParam.get("q");
-  console.log(setSearchParam);
-
   const [datas, setDatas] = useState<Pokemon>();
+  const [searchParams] = useSearchParams();
+  const { toast } = useToast();
 
   async function fetchData() {
     try {
-      const response = await searchPokemon(query!);
+      const query = Object.fromEntries([...searchParams]);
+      const response = await searchPokemon(query.name);
       setDatas(response);
     } catch (error: any) {
-      console.log(error.toString());
+      toast({
+        title: "Oops! Something went wrong.",
+        description: "Pokemon not Found",
+      });
     }
   }
 
   useEffect(() => {
     fetchData();
-  }, [query, seacrhParam]);
+  }, [searchParams]);
 
   return (
     <Layout>
       <div className="flex flex-col justify-center items-center h-full">
-        {query && (
+        {datas && (
           <>
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${datas?.id}.svg`}

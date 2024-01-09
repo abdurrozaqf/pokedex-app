@@ -1,9 +1,8 @@
+import { Loader2, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import MyPokemonCard from "@/components/MyPokemonCard";
 import Layout from "@/components/Layout";
-
-import { Loader2, Trash2 } from "lucide-react";
 
 const getDatafromLS = () => {
   const data = localStorage.getItem("myPokemon");
