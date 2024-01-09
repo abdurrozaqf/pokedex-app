@@ -2,9 +2,13 @@ import axiosWithConfig from "../axiosWithConfig";
 import { Pokemon, PokemonGender, PokemonSpecies } from "./types";
 // import { Request, Response } from "@/utils/types/api";
 
-export const getAllPokemons = async (query?: string) => {
+export const getAllPokemons = async (params?: string) => {
   try {
-    const url = query === undefined ? "/pokemon" : `${query}`;
+    let query = "";
+    if (params) {
+      query = params;
+    }
+    const url = query ? `${query}` : "/pokemon";
 
     const response = await axiosWithConfig.get(url);
 
@@ -14,8 +18,12 @@ export const getAllPokemons = async (query?: string) => {
   }
 };
 
-export const searchPokemon = async (query?: string) => {
+export const searchPokemon = async (params?: string) => {
   try {
+    let query = "";
+    if (params) {
+      query = params;
+    }
     const url = query ? `/pokemon/${query}` : "/pokemon";
 
     const response = await axiosWithConfig.get(url);
