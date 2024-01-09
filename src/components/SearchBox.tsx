@@ -17,7 +17,7 @@ const SearchBox = () => {
 
   const debounceHandle = debounce(
     (search: string) => handleSearch(search),
-    250
+    500
   );
 
   return (

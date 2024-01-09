@@ -1,5 +1,4 @@
 import { ChevronLeftIcon, ChevronRightIcon, Loader2 } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -12,10 +11,11 @@ import { Response, ResponseResults } from "@/utils/types/api";
 import { Pokemon, getAllPokemons } from "@/utils/apis";
 
 function App() {
+  const [url, setURL] = useState<string>();
   const [nextPage, setNextPage] = useState<string>();
   const [prevPage, setPrevPage] = useState<string>();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
   const [pokemons, setPokemon] = useState<Pokemon[]>();
 
   const [isLoading, setLoading] = useState(false);
@@ -23,20 +23,16 @@ function App() {
 
   useEffect(() => {
     fetchDataPokemon();
-  }, [searchParams]);
+  }, [url]);
 
   const fetchDataPokemon = async () => {
     setLoading(true);
     try {
-      const query = Object.fromEntries([...searchParams]);
-      const Response = await getAllPokemons(query.url);
+      const Response = await getAllPokemons(url!);
       const dataResponse = Response as Response<ResponseResults[]>;
 
-      searchParams.set("prev", Response.previous);
-      searchParams.set("next", Response.next);
-      setSearchParams(searchParams);
-      setNextPage(query.next);
-      setPrevPage(query.prev);
+      setPrevPage(Response.previous);
+      setNextPage(Response.next);
 
       const promises = dataResponse.results.map(async (data) => {
         const res = await axios.get(data.url);
@@ -56,10 +52,11 @@ function App() {
     }
   };
 
-  function handlePrevNextPage(page: string | number) {
-    searchParams.set("url", String(page));
-    setSearchParams(searchParams);
-  }
+  // function handlePrevNextPage(page: string | number) {
+  //   searchParams.delete("url");
+  //   searchParams.set("url", String(page));
+  //   setSearchParams(searchParams);
+  // }
 
   return (
     <Layout>
@@ -76,18 +73,20 @@ function App() {
           </div>
           <div className="flex items-center justify-around p-6">
             <Button
+              disabled={prevPage === null}
               onClick={() => {
                 setPokemon([]);
-                handlePrevNextPage(prevPage!);
+                setURL(prevPage!);
               }}
               className="bg-white dark:bg-black/25 hover:bg-indigo-200 dark:hover:bg-slate-800 border border-white dark:border dark:border-white/20 shadow text-black hover:text-black dark:text-white rounded-xl h-fit w-fit"
             >
               <ChevronLeftIcon size={"2rem"} />
             </Button>
             <Button
+              disabled={nextPage === null}
               onClick={() => {
                 setPokemon([]);
-                handlePrevNextPage(nextPage!);
+                setURL(nextPage!);
               }}
               className="bg-white dark:bg-black/25 hover:bg-indigo-200 dark:hover:bg-slate-800 border border-white dark:border dark:border-white/20 shadow text-black hover:text-black dark:text-white rounded-xl h-fit w-fit"
             >

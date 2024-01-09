@@ -18,9 +18,10 @@ const Search = () => {
       const response = await searchPokemon(query.name);
       setDatas(response);
     } catch (error: any) {
+      const query = Object.fromEntries([...searchParams]);
       toast({
         title: "Oops! Something went wrong.",
-        description: "Pokemon not Found",
+        description: `Pokemon ${query.name} not Found`,
       });
     }
   }
