@@ -1,19 +1,6 @@
 import { Pokemon, PokemonGender, PokemonSpecies } from "./types";
 import axiosWithConfig from "../axiosWithConfig";
 
-export const getAllPokemons = async (params: string) => {
-  try {
-    console.log(params);
-    const url = params !== undefined ? `${params}` : "/pokemon";
-
-    const response = await axiosWithConfig.get(url);
-
-    return response.data;
-  } catch (error: any) {
-    throw Error(error.response.data.message);
-  }
-};
-
 export const searchPokemon = async (params?: string) => {
   try {
     const url = params ? `/pokemon/${params}` : "/pokemon";

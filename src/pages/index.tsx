@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 
 import { Response, ResponseResults } from "@/utils/types/api";
-import { Pokemon, getAllPokemons } from "@/utils/apis";
+import { Pokemon } from "@/utils/apis";
 
 function App() {
   const [url, setURL] = useState<string>();
@@ -28,11 +28,11 @@ function App() {
   const fetchDataPokemon = async () => {
     setLoading(true);
     try {
-      const Response = await getAllPokemons(url!);
-      const dataResponse = Response as Response<ResponseResults[]>;
+      const Response = await axios.get(url!);
+      const dataResponse = Response.data as Response<ResponseResults[]>;
 
-      setPrevPage(Response.previous);
-      setNextPage(Response.next);
+      setPrevPage(dataResponse.previous);
+      setNextPage(dataResponse.next);
 
       const promises = dataResponse.results.map(async (data) => {
         const res = await axios.get(data.url);
