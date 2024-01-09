@@ -11,7 +11,7 @@ import { Response, ResponseResults } from "@/utils/types/api";
 import { Pokemon } from "@/utils/apis";
 
 function App() {
-  const [url, setURL] = useState<string>();
+  const [url, setURL] = useState<string>("https://pokeapi.co/api/v2/pokemon");
   const [nextPage, setNextPage] = useState<string>();
   const [prevPage, setPrevPage] = useState<string>();
 
@@ -28,7 +28,7 @@ function App() {
   const fetchDataPokemon = async () => {
     setLoading(true);
     try {
-      const Response = await axios.get(url!);
+      const Response = await axios.get(url);
       const dataResponse = Response.data as Response<ResponseResults[]>;
 
       setPrevPage(dataResponse.previous);
