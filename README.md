@@ -2,7 +2,7 @@
 
 This website contains about Pokemons, where there are Pokemon details with information about names, stats, abilities, etc. And you can save your favorite Pokemon by catching them. There is a My Pokemon page to see the results of catching the Pokemon you want.
 
-Let see the Pokemon App: [_here_](https://pokemon-app-ivory-omega.vercel.app/).
+Let see the Pokemon App: [_here_](https://my-pokemons-app.vercel.app/).
 
 ## Features
 
