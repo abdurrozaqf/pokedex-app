@@ -2,15 +2,23 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import debounce from "lodash.debounce";
 
 const SearchBox = () => {
-  const [searchParam, setSearchParam] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  console.log(searchParam);
 
-  const debounceRequest = debounce((search: string) => setSearch(search!), 500);
-
-  function setSearch(value: string) {
-    setSearchParam({ q: value });
+  function handleSearch(value: string) {
+    if (value !== "") {
+      searchParams.set("name", value);
+      navigate("/search");
+    } else {
+      searchParams.delete("name");
+    }
+    setSearchParams(searchParams);
   }
+
+  const debounceHandle = debounce(
+    (search: string) => handleSearch(search),
+    250
+  );
 
   return (
     <div className="flex">
@@ -18,8 +26,7 @@ const SearchBox = () => {
         type="text"
         placeholder="Seacrh pokemon here"
         className="bg-transparent shadow px-4 py-2 outline-none rounded-md placeholder:italic placeholder:text-black placeholder:dark:text-white dark:shadow-white"
-        onChange={(e) => debounceRequest(e.target.value)}
-        onClick={() => navigate("/search")}
+        onChange={(e) => debounceHandle(e.target.value)}
       />
     </div>
   );
