@@ -3,7 +3,8 @@ import axiosWithConfig from "../axiosWithConfig";
 
 export const getAllPokemons = async (params: string) => {
   try {
-    const url = params ? `${params}` : "/pokemon";
+    console.log(params);
+    const url = params !== undefined ? `${params}` : "/pokemon";
 
     const response = await axiosWithConfig.get(url);
 
