@@ -58,7 +58,7 @@ const DetailPage = () => {
   }, []);
 
   return (
-    <Layout title={pokemons?.name.toUpperCase()!}>
+    <Layout>
       {isLoading ? (
         <div className="h-full flex grow items-center justify-center">
           <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
