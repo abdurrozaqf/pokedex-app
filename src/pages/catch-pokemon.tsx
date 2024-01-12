@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 import { useToast } from "@/components/ui/use-toast";
@@ -29,14 +29,14 @@ const CatchPokemon = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [btnSave, setBtnSave] = useState(true);
 
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState<string>();
 
   const navigate = useNavigate();
   const { toast } = useToast();
   const params = useParams();
 
-  const handleAddPokemon = (e: any) => {
-    e.preventDefault();
+  const handleAddPokemon = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     let myPokemons = {
       nickname,
@@ -53,8 +53,8 @@ const CatchPokemon = () => {
     });
   };
 
-  const handleNickname = (e: any) => {
-    const newNickname = e.target.value;
+  const handleNickname = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newNickname = event.target.value;
     setNickname(newNickname);
     setBtnSave(false);
 
@@ -94,7 +94,7 @@ const CatchPokemon = () => {
   async function fetchDetail() {
     setIsLoading(true);
     try {
-      const detailResponse = await getDetailPokemon(params.id_pokemon!);
+      const detailResponse = await getDetailPokemon(+params.id_pokemon!);
       setDataPokemon(detailResponse);
 
       setIsLoading(false);
@@ -197,9 +197,8 @@ const CatchPokemon = () => {
                   className="text-black rounded-full px-2 text-center"
                   onChange={handleNickname}
                   value={nickname}
-                ></input>
+                />
                 <br></br>
-                {}
                 <Button
                   disabled={btnSave}
                   type="submit"

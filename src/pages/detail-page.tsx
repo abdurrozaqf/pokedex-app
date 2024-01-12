@@ -25,7 +25,7 @@ const DetailPage = () => {
 
   async function fetchDetailPokemon() {
     try {
-      const Response = await getDetailPokemon(params.id_pokemon!);
+      const Response = await getDetailPokemon(+params.id_pokemon!);
       setPokemons(Response);
     } catch (error: any) {
       toast({
@@ -39,7 +39,7 @@ const DetailPage = () => {
   async function fetchSpeciesPokemon() {
     setIsLoading(true);
     try {
-      const Response = await getSpeciesPokemon(params.id_pokemon!);
+      const Response = await getSpeciesPokemon(+params.id_pokemon!);
       setSpecies(Response);
 
       setIsLoading(false);

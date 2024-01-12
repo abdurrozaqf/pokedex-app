@@ -19,10 +19,10 @@ const MyPokemon = () => {
 
   const deletePokemon = (nickname: number) => {
     setLoading(true);
-    const filteredBooks = pokemons.filter((element: any) => {
+    const filtered = pokemons.filter((element: any) => {
       return element.nickname !== nickname;
     });
-    setPokemons(filteredBooks);
+    setPokemons(filtered);
     setLoading(false);
   };
 
