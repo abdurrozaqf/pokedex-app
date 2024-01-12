@@ -1,11 +1,15 @@
-export interface Response<T = any> {
+export interface Request {
+  offset?: string;
+}
+
+export interface Response {
   count: number;
   next: string;
   previous: string;
-  results: T;
+  results: Results[];
 }
 
-export type ResponseResults = {
+export type Results = {
   name: string;
   url: string;
 };

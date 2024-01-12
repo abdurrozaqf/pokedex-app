@@ -1,4 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon, Loader2 } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -7,15 +8,11 @@ import PokemonCard from "@/components/PokemonCard";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 
-import { Response, ResponseResults } from "@/utils/types/api";
+import { getPokemon } from "@/utils/apis/api";
 import { Pokemon } from "@/utils/apis";
 
-function App() {
-  const [url, setURL] = useState<string>("https://pokeapi.co/api/v2/pokemon");
-  const [nextPage, setNextPage] = useState<string>();
-  const [prevPage, setPrevPage] = useState<string>();
-
-  // const [searchParams, setSearchParams] = useSearchParams();
+function Home() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [pokemons, setPokemon] = useState<Pokemon[]>();
 
   const [isLoading, setLoading] = useState(false);
@@ -23,18 +20,15 @@ function App() {
 
   useEffect(() => {
     fetchDataPokemon();
-  }, [url]);
+  }, [searchParams]);
 
   const fetchDataPokemon = async () => {
     setLoading(true);
     try {
-      const Response = await axios.get(url);
-      const dataResponse = Response.data as Response<ResponseResults[]>;
+      const query = Object.fromEntries([...searchParams]);
+      const Response = await getPokemon({ ...query });
 
-      setPrevPage(dataResponse.previous);
-      setNextPage(dataResponse.next);
-
-      const promises = dataResponse.results.map(async (data) => {
+      const promises = Response.results.map(async (data) => {
         const res = await axios.get(data.url);
         const dataPokemon = res.data;
         return dataPokemon;
@@ -52,11 +46,23 @@ function App() {
     }
   };
 
-  // function handlePrevNextPage(page: string | number) {
-  //   searchParams.delete("url");
-  //   searchParams.set("url", String(page));
-  //   setSearchParams(searchParams);
-  // }
+  function handlePrevPage() {
+    const query = searchParams.get("offset");
+    const oldOffset = query ? parseInt(query, 10) : 0;
+    if (oldOffset >= 20) {
+      const newOffset = oldOffset - 20;
+      searchParams.set("offset", String(newOffset));
+    }
+    setSearchParams(searchParams);
+  }
+
+  function handleNextPage() {
+    const query = searchParams.get("offset");
+    const oldOffset = query ? parseInt(query, 10) : 0;
+    const newOffset = oldOffset + 20;
+    searchParams.set("offset", String(newOffset));
+    setSearchParams(searchParams);
+  }
 
   return (
     <Layout>
@@ -73,20 +79,16 @@ function App() {
           </div>
           <div className="flex items-center justify-around p-6">
             <Button
-              disabled={prevPage === null}
               onClick={() => {
-                setPokemon([]);
-                setURL(prevPage!);
+                handlePrevPage();
               }}
               className="bg-white dark:bg-black/25 hover:bg-indigo-200 dark:hover:bg-slate-800 border border-white dark:border dark:border-white/20 shadow text-black hover:text-black dark:text-white rounded-xl h-fit w-fit"
             >
               <ChevronLeftIcon size={"2rem"} />
             </Button>
             <Button
-              disabled={nextPage === null}
               onClick={() => {
-                setPokemon([]);
-                setURL(nextPage!);
+                handleNextPage();
               }}
               className="bg-white dark:bg-black/25 hover:bg-indigo-200 dark:hover:bg-slate-800 border border-white dark:border dark:border-white/20 shadow text-black hover:text-black dark:text-white rounded-xl h-fit w-fit"
             >
@@ -99,4 +101,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
