@@ -17,7 +17,7 @@ import {
 
 const DetailPage = () => {
   const [species, setSpecies] = useState<PokemonSpecies>();
-  const [pokemons, setPokemons] = useState<Pokemon>();
+  const [pokemon, setPokemon] = useState<Pokemon>();
 
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -26,7 +26,7 @@ const DetailPage = () => {
   async function fetchDetailPokemon() {
     try {
       const Response = await getDetailPokemon(+params.id_pokemon!);
-      setPokemons(Response);
+      setPokemon(Response);
     } catch (error: any) {
       toast({
         title: "Oops! Something went wrong.",
@@ -58,7 +58,7 @@ const DetailPage = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout title={pokemon?.name.toUpperCase()}>
       {isLoading ? (
         <div className="h-full flex grow items-center justify-center">
           <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
@@ -73,21 +73,21 @@ const DetailPage = () => {
               <div className="mt-8">
                 <figure>
                   <img
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemons?.id!}.png`}
-                    alt={pokemons?.name}
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id!}.png`}
+                    alt={pokemon?.name}
                     className="w-full h-auto"
                   />
                 </figure>
               </div>
               <div className="w-full flex justify-center gap-4">
-                {pokemons?.types.map((datas, index) => (
+                {pokemon?.types.map((data, index) => (
                   <Badge
                     key={index}
                     variant={"outline"}
-                    className={`${datas.type.name} px-4 py-2`}
+                    className={`${data.type.name} px-4 py-2`}
                   >
                     <p className=" text-white text-sm md:text-[1.4rem] drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)]">
-                      {datas.type.name}
+                      {data.type.name}
                     </p>
                   </Badge>
                 ))}
@@ -98,17 +98,17 @@ const DetailPage = () => {
                 STATS
               </p>
               <div className="mt-1">
-                {pokemons?.stats.map((datas, index) => (
+                {pokemon?.stats.map((data, index) => (
                   <div key={index}>
                     <div className="w-full flex items-end justify-between mb-0 md:mb-1">
                       <p className="mt-2 text-base italic capitalize">
-                        {datas.stat.name}
+                        {data.stat.name}
                       </p>
                       <p className="mt-2 text-lg md:text-xl font-bold">
-                        {datas.base_stat}
+                        {data.base_stat}
                       </p>
                     </div>
-                    <Progress value={datas.base_stat} className="h-[0.5rem]" />
+                    <Progress value={data.base_stat} className="h-[0.5rem]" />
                   </div>
                 ))}
               </div>
@@ -118,22 +118,22 @@ const DetailPage = () => {
               <hr className="pt-2 pb-1 dark:border-white border-black" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 md:gap-y-4">
                 <p className="font-medium text-xl leading-5">
-                  Height <br />{" "}
+                  Height <br />
                   <span className="font-normal text-base md:text-lg dark:text-neutral-300">
-                    {pokemons?.height! / 10} m{" "}
+                    {pokemon?.height! / 10} m
                   </span>
                 </p>
                 <p className="font-medium text-xl leading-5">
                   Weight
                   <br />
                   <span className="font-normal text-base md:text-lg dark:text-neutral-300">
-                    {pokemons?.weight! / 10} kg
+                    {pokemon?.weight! / 10} kg
                   </span>
                 </p>
                 <p className="font-medium text-xl leading-5">
                   Habitat <br />
                   <span className="font-normal text-base md:text-lg dark:text-neutral-300">
-                    {species?.habitat.name || "—"}
+                    {species?.habitat !== null ? species?.habitat.name : "~"}
                   </span>
                 </p>
               </div>
@@ -141,12 +141,12 @@ const DetailPage = () => {
             <div className="w-full flex flex-col bg-none dark:bg-black/25 p-4 rounded-lg border border-black/50 dark:border-white/50">
               <p className="font-bold text-2xl mb-2 leading-5">Ability</p>
               <hr className="pt-2 pb-1 dark:border-white border-black" />
-              {pokemons?.abilities.map((datas, index) => (
+              {pokemon?.abilities.map((data, index) => (
                 <p
                   key={index}
                   className="font-medium text-base md:text-xl dark:text-neutral-300 capitalize"
                 >
-                  › {datas.ability.name}
+                  › {data.ability.name}
                 </p>
               ))}
             </div>
@@ -155,22 +155,22 @@ const DetailPage = () => {
             <p className="font-bold text-[1.6rem] italic">MOVES</p>
             <hr className="pt-2 pb-1 dark:border-white border-black" />
             <div className="grid grid-cols-2 md:grid-cols-3 justify-items-start ">
-              {pokemons?.moves
-                .map((datas, index) =>
+              {pokemon?.moves
+                .map((data, index) =>
                   index < 9 ? (
                     <p
                       key={index}
                       className="font-medium text-base md:text-xl dark:text-neutral-300 capitalize"
                     >
-                      › {datas.move.name}
+                      › {data.move.name}
                     </p>
                   ) : undefined
                 )
-                .filter((datas) => datas !== undefined)}
+                .filter((data) => data !== undefined)}
             </div>
           </div>
           <div className="flex justify-center mb-6">
-            <Link to={`/catch-pokemon/${pokemons?.id}`}>
+            <Link to={`/catch-pokemon/${pokemon?.id}`}>
               <Button className="px-4 py-2 h-auto">CATCH</Button>
             </Link>
           </div>

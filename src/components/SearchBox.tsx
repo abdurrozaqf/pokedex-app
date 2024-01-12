@@ -8,6 +8,7 @@ const SearchBox = () => {
   function handleSearch(value: string) {
     if (value !== "") {
       searchParams.set("name", value);
+      searchParams.delete("offset");
       navigate("/search");
     } else {
       searchParams.delete("name");
