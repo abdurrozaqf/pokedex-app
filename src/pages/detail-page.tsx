@@ -170,7 +170,7 @@ const DetailPage = () => {
             </div>
           </div>
           <div className="flex justify-center mb-6">
-            <Link to={`/catch-pokemon/${pokemons?.name}`}>
+            <Link to={`/catch-pokemon/${pokemons?.id}`}>
               <Button className="px-4 py-2 h-auto">CATCH</Button>
             </Link>
           </div>

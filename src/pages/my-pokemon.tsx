@@ -3,6 +3,12 @@ import { useEffect, useState } from "react";
 
 import MyPokemonCard from "@/components/MyPokemonCard";
 import Layout from "@/components/Layout";
+import { Pokemon } from "@/utils/apis";
+
+interface CatchPokemons {
+  nickname: string;
+  data_pokemon: Pokemon;
+}
 
 const getDatafromLS = () => {
   const data = localStorage.getItem("myPokemon");
@@ -14,10 +20,10 @@ const getDatafromLS = () => {
 };
 
 const MyPokemon = () => {
-  const [pokemons, setPokemons] = useState(getDatafromLS());
+  const [pokemons, setPokemons] = useState<CatchPokemons[]>(getDatafromLS());
   const [isLoading, setLoading] = useState(false);
 
-  const deletePokemon = (nickname: number) => {
+  const deletePokemon = (nickname: string) => {
     setLoading(true);
     const filtered = pokemons.filter((element: any) => {
       return element.nickname !== nickname;
@@ -38,22 +44,24 @@ const MyPokemon = () => {
         </div>
       ) : (
         <>
-          {pokemons < 1 ? (
+          {pokemons.length === 0 ? (
             <div className="h-full flex grow items-center justify-center">
               No pokemon catch
             </div>
           ) : (
             <>
               <div className="grid grid-cols-2 gap-y-10 justify-items-center py-10 px-5">
-                {pokemons.map((items: any, index: any) => {
+                {pokemons.map((pokemon, index) => {
                   return (
                     <div key={index} className="relative">
                       <div className="absolute right-0 p-2 hover:text-red-500 cursor-pointer border dark:border-white/20 rounded-tr-lg rounded-bl-lg">
-                        <Trash2 onClick={() => deletePokemon(items.nickname)} />
+                        <Trash2
+                          onClick={() => deletePokemon(pokemon.nickname)}
+                        />
                       </div>
                       <MyPokemonCard
-                        nickname={items.nickname}
-                        data={items.data_pokemon}
+                        nickname={pokemon.nickname}
+                        data={pokemon.data_pokemon}
                       />
                     </div>
                   );

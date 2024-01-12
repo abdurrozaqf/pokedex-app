@@ -35,6 +35,22 @@ const CatchPokemon = () => {
   const { toast } = useToast();
   const params = useParams();
 
+  async function fetchDetail() {
+    setIsLoading(true);
+    try {
+      const detailResponse = await getDetailPokemon(+params.id_pokemon!);
+      setDataPokemon(detailResponse);
+
+      setIsLoading(false);
+    } catch (error: any) {
+      toast({
+        title: "Opss!",
+        description: error.toString(),
+        variant: "destructive",
+      });
+    }
+  }
+
   const handleAddPokemon = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -90,22 +106,6 @@ const CatchPokemon = () => {
       });
     }
   };
-
-  async function fetchDetail() {
-    setIsLoading(true);
-    try {
-      const detailResponse = await getDetailPokemon(+params.id_pokemon!);
-      setDataPokemon(detailResponse);
-
-      setIsLoading(false);
-    } catch (error: any) {
-      toast({
-        title: "Opss!",
-        description: error.toString(),
-        variant: "destructive",
-      });
-    }
-  }
 
   useEffect(() => {
     fetchDetail();
