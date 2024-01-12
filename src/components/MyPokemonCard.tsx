@@ -11,7 +11,7 @@ const PokemonCard = (props: Props) => {
   const { data, nickname } = props;
 
   return (
-    <Link to={`/detail-pokemon/${data.name}`}>
+    <Link to={`/detail-pokemon/${data.id}`}>
       <div className="w-[10rem] h-[14rem] md:w-[16rem]  md:h-[16rem] bg-white dark:bg-slate-800/50 border dark:border-white/20 shadow-lg dark:shadow-neutral-300/20 rounded-lg flex flex-col items-center justify-between py-4">
         <figure>
           <img
