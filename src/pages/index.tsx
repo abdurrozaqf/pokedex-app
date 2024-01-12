@@ -59,8 +59,10 @@ function Home() {
   function handleNextPage() {
     const query = searchParams.get("offset");
     const oldOffset = query ? parseInt(query, 10) : 0;
-    const newOffset = oldOffset + 20;
-    searchParams.set("offset", String(newOffset));
+    if (oldOffset <= 1300) {
+      const newOffset = oldOffset + 20;
+      searchParams.set("offset", String(newOffset));
+    }
     setSearchParams(searchParams);
   }
 
