@@ -59,3 +59,8 @@ export interface PokemonSpecies {
     name: string;
   }[];
 }
+
+export interface CatchPokemons {
+  nickname: string;
+  data_pokemon: Pokemon;
+}
