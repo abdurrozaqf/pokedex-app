@@ -1,6 +1,6 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { ChevronLeft, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Loader2 } from "lucide-react";
 
 import { useToast } from "@/components/ui/use-toast";
 import { Progress } from "@/components/ui/progress";
@@ -20,6 +20,7 @@ const DetailPage = () => {
   const [pokemon, setPokemon] = useState<Pokemon>();
 
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const { toast } = useToast();
   const params = useParams();
 
@@ -65,6 +66,15 @@ const DetailPage = () => {
         </div>
       ) : (
         <>
+          <div className="px-6 py-6">
+            <Button
+              onClick={() => navigate(-1)}
+              className="bg-transparent hover:bg-transparent border-black dark:border-white w-fit flex items-center pl-1 pr-3 py-1 h-fit"
+              variant={"outline"}
+            >
+              <ChevronLeft /> Back
+            </Button>
+          </div>
           <div className="grid grid-cols-2 gap-5 px-6 py-6 transition-all">
             <div className="h-fit flex flex-col items-center justify-center relative">
               <p className="font-extrabold text-2xl absolute z-[1] top-1 italic">

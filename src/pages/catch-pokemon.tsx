@@ -7,29 +7,20 @@ import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 
 import { Pokemon, getDetailPokemon } from "@/utils/apis";
+import getDatafromLS from "@/utils/hooks/getLS";
 
 import BackgroundCatch2 from "/images/bg-catch-2.png";
 import BackgroundCatch from "/images/bg-catch.jpg";
 import PokeBall from "/images/pokeball-logo-2.png";
 
-const getDatafromLS = () => {
-  const data = localStorage.getItem("myPokemon");
-  if (data) {
-    return JSON.parse(data);
-  } else {
-    return [];
-  }
-};
-
 const CatchPokemon = () => {
   const [dataPokemon, setDataPokemon] = useState<Pokemon>();
   const [pokemons, setPokemons] = useState(getDatafromLS());
+  const [nickname, setNickname] = useState<string>();
 
   const [catchPokemon, setCatchPokemon] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [btnSave, setBtnSave] = useState(true);
-
-  const [nickname, setNickname] = useState<string>();
 
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -51,9 +42,7 @@ const CatchPokemon = () => {
     }
   }
 
-  const handleAddPokemon = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const handleAddPokemon = () => {
     let myPokemons = {
       nickname,
       data_pokemon: dataPokemon,
@@ -67,6 +56,7 @@ const CatchPokemon = () => {
       description: "Pokemons now already in your My Pokemon",
       variant: "default",
     });
+    navigate(-1);
   };
 
   const handleNickname = (event: React.ChangeEvent<HTMLInputElement>) => {

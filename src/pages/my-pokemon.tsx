@@ -3,21 +3,9 @@ import { useEffect, useState } from "react";
 
 import MyPokemonCard from "@/components/MyPokemonCard";
 import Layout from "@/components/Layout";
-import { Pokemon } from "@/utils/apis";
 
-interface CatchPokemons {
-  nickname: string;
-  data_pokemon: Pokemon;
-}
-
-const getDatafromLS = () => {
-  const data = localStorage.getItem("myPokemon");
-  if (data) {
-    return JSON.parse(data);
-  } else {
-    return [];
-  }
-};
+import { CatchPokemons } from "@/utils/apis/types";
+import getDatafromLS from "@/utils/hooks/getLS";
 
 const MyPokemon = () => {
   const [pokemons, setPokemons] = useState<CatchPokemons[]>(getDatafromLS());
