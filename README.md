@@ -14,7 +14,7 @@ Let see the Pokemon App [_here_](https://my-pokemons-app.vercel.app/).
 - There are Pokemon details that you want to know
 - Already theme light and dark mode
 
-## Development
+## ⚙️ Tech Stack
 
 - [React](https://react.dev/)
 - [Vite](https://vitejs.dev/)
@@ -22,21 +22,31 @@ Let see the Pokemon App [_here_](https://my-pokemons-app.vercel.app/).
 - [Shadcn/ui](https://ui.shadcn.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
-## Dependencies
+## 🏃 Run Locally
 
-- @radix-ui/react-alert-dialog: ^1.0.5,
-- @radix-ui/react-progress: ^1.0.3,
-- @radix-ui/react-slot: ^1.0.2,
-- @radix-ui/react-toast: ^1.1.5,
-- axios: ^1.6.2,
-- class-variance-authority: ^0.7.0,
-- clsx: ^2.0.0,
-- lucide-react: ^0.292.0,
-- react: ^18.2.0,
-- react-dom: ^18.2.0,
-- react-router-dom: ^6.20.0,
-- tailwind-merge: ^2.0.0,
-- tailwindcss-animate: ^1.0.7
+Clone the project
+
+```bash
+git clone https://github.com/abdurrozaqf/pokedex-app.git
+```
+
+Go to the project directory
+
+```bash
+cd pokedex-app
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the server
+
+```bash
+npm run dev
+```
 
 ## Screenshots
 
